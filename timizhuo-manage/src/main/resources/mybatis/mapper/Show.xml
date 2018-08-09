@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.timi.timizhuo.dao.mapper.ShowDao" >
+	<resultMap id="ShowResultMap" type="com.timi.timizhuo.dao.model.ShowModel" >
+		<id column="show_Id" property="showId" jdbcType="VARCHAR" />
+		<result column="SHOW_TITLE" property="showTitle" jdbcType="TIMESTAMP" />
+    	<result column="SHOW_TIME" property="showTime" jdbcType="VARCHAR" />
+    	<result column="SHOW_ADDRESS" property="showAddress" jdbcType="VARCHAR" />
+    	<result column="SHOW_DETAIL" property="showDetail" jdbcType="VARCHAR" />
+    	<result column="SHOW_IMGS" property="showImgs" jdbcType="VARCHAR" />
+    	<result column="SHOW_VIDEO" property="showVideo" jdbcType="VARCHAR" />
+    	<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+  
+	
+</mapper>

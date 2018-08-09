@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.timi.timizhuo.dao.mapper.ImagesDao" >
+  <resultMap id="ImagesResultMap" type="com.timi.timizhuo.dao.model.ImagesModel" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="IMG_URL" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="THUMB" property="thumb" jdbcType="VARCHAR" />
+    <result column="ALT" property="alt" jdbcType="VARCHAR" />
+    <result column="UPLOAD_USER_ID" property="uploadUserId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <select id="findAll" resultMap="ImagesResultMap" >
+    select * from timi_images
+  </select>
+</mapper>
