@@ -53,7 +53,7 @@
 									<span class="input-group-addon">
 										<i class="fa fa-user"></i>
 									</span>
-									<input type="text" class="form-control" placeholder="用户名">
+									<input type="text" class="form-control" placeholder="用户名" id="username">
 								</div>
 	                        </div>
 						</div>
@@ -64,9 +64,15 @@
 									<span class="input-group-addon">
 										<i class="fa fa-key"></i>
 									</span>
-									<input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+									<input type="password" class="form-control" id="password" placeholder="密码">
 								</div>
 	                        </div>
+						</div>
+						
+						<div class="form-group hidden" id="error-info-div">
+							<div class="col-xs-12 text-center text-danger" id="error-info">
+							用户名密码不正确
+							</div>
 						</div>
 
 						<div class="form-group">
@@ -80,12 +86,11 @@
 								</div>
 							</div>
 						</div>
-					
-
+							
 						<div class="panel-footer">
 							<div class="clearfix">
 <!-- 								<a href="extras-registration.html" class="btn btn-default pull-left">Register</a> -->
-								<a href="extras-login.html" class="btn btn-primary pull-right">登录</a>
+								<a id="login-btn" class="btn btn-primary pull-right">登录</a>
 							</div>
 						</div>
 
@@ -101,8 +106,6 @@
 		</div>
 	</div>
 </div>
-
-    
     
     <!-- Load site level scripts -->
 
@@ -130,7 +133,44 @@
 <script src="/timizhuo-manage/html/assets/demo/demo-switcher.js"></script>
 
 <script src="/timizhuo-manage/html/assets/plugins/simpleWeather/jquery.simpleWeather.min.js"></script> 
-
+<script type="text/javascript">
+$("#login-btn").click(function() {
+	var username = $("#username").val();
+	if (username.length == 0) {
+		setErrorInfo("用户名不能为空");
+		return;
+	}
+	var password = $("#password").val();
+	if (password.length == 0) {
+		setErrorInfo("密码不能为空");
+		return;
+	}
+	$.post("/timizhuo-manage/manage/user/login",
+			{
+				username: username,
+				password: password
+			}, function (data, status) {
+				if (status == "success") {
+					if (data.code == "200") {
+						location.href="/timizhuo-manage/index";
+					} else {
+						setErrorInfo(data.message);
+					}
+				} else {
+					setErrorInfo("登录失败");
+				}
+			}
+	);
+	
+	function setErrorInfo(text) {
+		$("#error-info").html(text);
+		if ($("#error-info-div").hasClass("hidden")) {
+			$("#error-info-div").removeClass("hidden");
+			$("#error-info-div").addClass("show");
+		}
+	}
+});
+</script>
 <!-- End loading site level scripts -->
     <!-- Load page level scripts-->
     
